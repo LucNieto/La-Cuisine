@@ -1,0 +1,48 @@
+
+<!--Top Table UI-->
+<!--Top Table UI-->
+<div class="card card-cascade narrower">
+  <!--Card image-->
+  <div class="view gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+    <h3 >Ingredientes</h3>
+  </div>
+  <!--/Card image-->
+  <div class="px-4">
+    <div class="table-wrapper">
+      <!--Table-->
+      <table class="table table-hover mb-0">
+        <!--Table head-->
+        <thead>
+        <tr>
+          <th class="th-lg"><a>ID <i class="fa fa-sort ml-1"></i></a></th>
+          <th class="th-lg"><a>Ingrediente<i class="fa fa-sort ml-1"></i></a></th>
+          <th class="th-lg"><a>Ver<i class="fa fa-sort ml-1"></i></a></th>
+          <th class="th-lg"><a>Editar<i class="fa fa-sort ml-1"></i></a></th>
+          <th class="th-lg"><a><i class="fa fa-sort ml-1"></i></a></th>
+        </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <% @ingredients.each do |ingredient| %>
+        <tbody>
+        <td class="th-lg"><a><i class=""></i></a></td>
+          <td><%= ingredient.ingrediente %></td>
+          <td><%= link_to ingredient_path(ingredient) do %><i class="fa fa-eye"></i><% end %></td>
+          <td><%= link_to edit_ingredient_path(ingredient) do %><i class="fa fa-pencil text-success"></i><% end %></td>
+          <td><%= link_to ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o text-danger"></i><% end %></td>
+        </tr>
+        </tbody>
+        <!--Table body-->
+        <% end %>
+      </table>
+      <!--Table-->
+    </div>
+    <hr class="my-0">
+    <!--Bottom Table UI-->
+    <div class="group-btn">
+     <button class="btn btn-primary" style="background: white;"> <%= link_to 'Nuevo Ingrediente', new_ingredient_path %> </button>
+    </div>
+    <!--Bottom Table UI-->
+  </div>
+
+</div>

@@ -1,0 +1,51 @@
+<%= form_with(model: recipe, html: { multipart: true }, local: true) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-8 col-md-6">
+          <div class="form-login">
+            <h4>Recetas.</h4>
+            <%= form.label "Imagen"%>
+            <%= form.file_field :image, for: "exampleInputFile"  %>
+            </br>
+            <div class="field">
+              <%= form.label :receta %>
+              <%= form.text_field :receta, id: :recipe_receta, class: "form-control input-sm chat-input", placeholder: "Nombre de la receta" %>
+            </div>
+            </br>
+            <%= form.label "Procedimiento" %>
+            <%= form.text_area :procedure, id: :recipe_receta, class: "form-control", rows: 6,  placeholder: "Nombre de la receta" %>
+            </br>
+            <% Ingredient.all.each do |ing| %>
+                <%= check_box_tag "recipe[ingredient_ids][]", ing.id, @recipe.ingredient_ids.include?(ing.id), id: dom_id(ing) %>
+                <%= label_tag dom_id(ing), ing.ingrediente %>
+                <br>
+            <% end %>
+            <div class="wrapper">
+            <span class="group-btn">
+                  <%= form.submit 'Crear', class: "btn btn-primary" %>
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<%= form_with(model: ingredient, local: true) do |form| %>
+  <% if ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+      <% ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-8 col-md-6">
+          <div class="form-login">
+            <h4>Ingredientes.</h4>
+            <div class="field">
+              <%= form.label :ingrediente %>
+              <%= form.text_field :ingrediente, id: :ingredient_ingrediente, class: "form-control input-sm chat-input", placeholder: "Nombre del ingrediente" %>
+            </div>
+            </br>
+            <div class="wrapper">
+            <span class="group-btn">
+                  <%= form.submit 'Crear', class: "btn btn-primary " %>
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

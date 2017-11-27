@@ -1,0 +1,28 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-5 col-md-4">
+      <div class="form-login">
+        <h4>Iniciar sesión</h4>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control input-sm chat-input", placeholder: "usuario" %>
+        </br>
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off", class: "form-control input-sm chat-input", placeholder: "contraseña" %>
+        </br>
+        <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+        <% end -%>
+        <div class="wrapper">
+            <span class="group-btn">
+              <%= f.submit "Log in", class: "btn btn-primary btn-md"%>
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

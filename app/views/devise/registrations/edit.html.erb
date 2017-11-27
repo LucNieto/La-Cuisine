@@ -1,0 +1,40 @@
+
+<%= devise_error_messages! %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="form-login">
+            <h4>Actualizar perfil</h4>
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, class: "form-control input-sm chat-input", placeholder: "usuario" %>
+            </br>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <br>
+            <% end %>
+            <%= f.label :password %> <i>(dejar en blanco si no desea  cambiarla)</i><br />
+            <%= f.password_field :password, autocomplete: "off", class: "form-control input-sm chat-input", placeholder: "nueva contraseña" %>
+            </br>
+            <%= f.label :password %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control input-sm chat-input", placeholder: "confirmar nueva contraseña" %>
+            </br>
+            <%= f.label :password %> <i>(La contraseña actual es necesaria para efectuar los cambios)</i><br />
+            <%= f.password_field :current_password, autocomplete: "off", class: "form-control input-sm chat-input", placeholder: "contraseña actual" %>
+            </br>
+            <div class="wrapper">
+              <span class="group-btn">
+                <%= f.submit "Actualizar", class: "btn btn-primary btn-md"%>
+              </span>
+<% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="msg-flotante col-md-offset-5 col-md-2 text-center">
+  <h3>Cancelar mi cuenta</h3>
+
+  <p>!Puedes volver en cualquier momento!<%= button_to "Cancelar cuenta", registration_path(resource_name), data: { confirm: "¿Estas seguro?" }, method: :delete, class: "btn btn-default btn-md" %></p>
+</div>

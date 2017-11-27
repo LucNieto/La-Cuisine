@@ -1,0 +1,107 @@
+<nav class="navbar navbar-default navbar-inverse" style="background: #323232;" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../home/index" style="font-family: 'Great Vibes', cursive; font-size: 30px;">La Cuisine</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catálogos <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to 'Lista de Ingredientes', ingredients_path %></li>
+            <li> <%= link_to 'Nuevo Ingrediente', new_ingredient_url %></li>
+            <li class="divider"></li>
+            <li><%= link_to 'Lista de Recetas', recipes_path %></li>
+            <li> <%= link_to 'Nueva Receta', new_recipe_path %></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">¿Ya tienes cuenta?</p></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+          <ul id="login-dp" class="dropdown-menu">
+            <% if current_user %>
+                <li>
+                  <div class="row">
+
+                    <div class="col-lg-8">
+                      <p class="text-center">
+                        <%= image_tag "chef1.png", style: "size= width: 200px; height:200px;"%>
+                      </p>
+                    </div>
+                    <div class="bottom text-center">
+                      <%= current_user.email %>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <%=  link_to "Actualizar perfil", edit_user_registration_path,class: "btn btn-primary btn-block"%>
+                      </div>
+                      <div class="form-group">
+                        <%=  link_to "Cerrar sesión", destroy_user_session_path, :method => :delete, class: "btn btn-danger btn-block"%>
+                      </div>
+                    </div>
+                  </div><!-- fin div row-->
+                </li>
+            <% else %>
+                <li>
+                  <div class="row">
+                    <div class="col-md-12">
+                      Iniciar sesión con
+                      <div class="social-buttons">
+                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                      </div>
+                      or
+                      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                          <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                            <div class="form-group">
+                              <%= f.email_field :email, :id => 'exampleInputEmail2',class: "form-control", placeholder: "email" %>
+                            </div>
+                            <div class="form-group">
+                              <%= f.password_field :password,:id => 'exampleInputPassword2', autocomplete: "off", class: "form-control", placeholder: "contraseña" %>
+                              <div class="help-block text-right">
+                                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                                    <%= link_to "¿Olvido su contraseña?", new_password_path(resource_name) %><br />
+                                <% end -%>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <%= f.submit "Iniciar sesión", class: "btn btn-primary btn-block"%>
+                            </div>
+                            <div class="filed">
+                              <% if devise_mapping.rememberable? -%>
+                                  <%= f.check_box :remember_me %>
+                                  <%= f.label 'Mantener la sesión iniciada' %>
+                              <% end -%>
+                            </div>
+                          </form>
+                          <% end %><!--fin login  form-->
+                    </div>
+                    <div class="bottom text-center">
+                      ¿No tienes cuenta? <a href="/users/sign_up"><b>Registrate</b></a>
+                    </div>
+                  </div><!-- fin div row-->
+                </li>
+            <% end %>
+
+          </ul><!--fin lista login  -->
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

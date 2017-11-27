@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-8 col-md-6">
+      <div class="form-login">
+        <h4>Receta</h4>
+        <label><%= image_tag @recipe.image.url %></label>
+        </br>
+        <div class="field">
+          <%= @recipe.receta %>
+        </div>
+        </br>
+        <div class="filed"></div>
+        <%= @recipe.procedure %>
+        </br>
+        <ul>
+          <% @recipe.ingredients.each do |ing| %>
+              <li><%= ing.ingrediente %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

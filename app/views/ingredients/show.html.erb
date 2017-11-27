@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-8 col-md-6">
+      <div class="form-login">
+        <div class="field">
+          <h3>Ingrediente: </h3>
+          <%= @ingredient.ingrediente %>
+        </div>
+        </br>
+        <div class="wrapper">
+            <span class="group-btn">
+                  <%= link_to 'Modificar', edit_ingredient_path(@ingredient), class: "btn btn-primary" %>
+            </span>
+          |
+          <span class="group-btn">
+                  <%= link_to 'Lista de Ingredientes', ingredients_path, class: "btn btn-primary" %>
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
